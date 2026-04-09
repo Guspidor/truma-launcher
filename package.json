@@ -1,0 +1,50 @@
+{
+  "name": "mon-app",
+  "version": "0.0.4",
+  "description": "Application Electron légère",
+  "main": "main.js",
+  "type": "module",
+  "headers": {
+    "Authorization": "Bearer ${GITHUB_TOKEN}",
+    "Accept": "application/vnd.github+json"
+  },
+  "scripts": {
+    "start": "electron .",
+    "release": "node release.js",
+    "build": "electron-builder",
+    "clear": "node clear-releases.js",
+    "reset": "node reset-version.js"
+  },
+  "devDependencies": {
+    "electron": "^41.1.1",
+    "electron-builder": "^26.8.1",
+    "prompts": "^2.4.2",
+    "semver": "^7.7.4"
+  },
+  "build": {
+    "appId": "com.github.monapp",
+    "productName": "MonApp",
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "guspidor",
+        "repo": "truma-launcher",
+        "releaseType": "release",
+        "tagNamePrefix": "v"
+      }
+    ]
+  },
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "dotenv": "^17.4.1",
+    "electron-updater": "^6.8.3",
+    "node-fetch": "^3.3.2",
+    "ora": "^9.3.0"
+  }
+}
